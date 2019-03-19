@@ -6,7 +6,8 @@ public class GenericStackArray <E> implements GenericStack<E>{
     private E[] array;
     private int top;
 
-    public GenericStackArray(int maxSize) {
+    @SuppressWarnings("unchecked")
+	public GenericStackArray(int maxSize) {
         this.maxSize = maxSize;
 //        @SuppressWarnings("unchecked")
         this.array = (E[]) Array.newInstance(GenericStackArray.class, maxSize);
@@ -17,7 +18,8 @@ public class GenericStackArray <E> implements GenericStack<E>{
         /**
          * create a new array double the size of the old, copy the old elements then return the new array */
         int newSize = maxSize * 2;
-        E[] newArray = (E[]) Array.newInstance(GenericStackArray.class, newSize);
+        @SuppressWarnings("unchecked")
+		E[] newArray = (E[]) Array.newInstance(GenericStackArray.class, newSize);
         for(int i = 0; i < maxSize; i++) {
             newArray[i] = this.array[i];
         }
@@ -27,7 +29,8 @@ public class GenericStackArray <E> implements GenericStack<E>{
     public boolean isEmpty() {
         return top == -1;
     }
-
+    
+    
     public boolean isFull() {
         return top == maxSize-1;
     }
@@ -50,6 +53,5 @@ public class GenericStackArray <E> implements GenericStack<E>{
             throw new EmptyStackException();
         }
     }
-
-    
 }
+    
